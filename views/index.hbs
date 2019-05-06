@@ -6,7 +6,7 @@
     
 </head>
 <body>
-   <form action="">
+   {{!-- <form action="">
        <input type="text" class="reg-login" placeholder="Логин"><br><br>
         <input type="password" class="reg-pass" placeholder="Пароль"><br><br>
         <input type="password" class="reg-pass-check" placeholder="Подтвердите пароль"><br><br>
@@ -16,8 +16,24 @@
         <input type="email" class="reg-email" placeholder="mail@mail.ru"><br><br>
         <input type="tel" class="reg-tel" placeholder="+7 (999) 123-24-25"><br><br>
         <input type="button" id="submit-btn" value="Кнопка">
-   </form>
+   </form> --}}
     <div class="status"></div>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+        }
+
+        form > * + * {
+            margin-top: 10px;
+        }
+    </style>
+    <form action="">
+        <input type="file" name="doc">
+        <input type="button" value="Удалить файл">
+        <input type="submit" name value="Кнопка">
+   </form>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" defer></script>
 	<script src="/js/login.js" defer></script>
 </body>
