@@ -11,12 +11,12 @@
     
     <header class="header">
         <div class="header__wrapper">
-            <ul class="header__menu">
-                <li class="header__menu-link header__menu-link--active"><a href="#">Работы</a></li>
-                <li class="header__menu-link"><a href="#">На проверке</a></li>
-                <li class="header__menu-link"><a href="#">Проверенные</a></li>
-                <li class="header__menu-link"><a href="#">Доработать</a></li>
-                <li class="header__menu-link"><a href="#">Пользователи</a></li>
+            <ul class="menu header__menu">
+                <li class="menu-link menu-link--active"><a href="#">Работы</a></li>
+                <li class="menu-link"><a href="#">На проверке</a></li>
+                <li class="menu-link"><a href="#">Проверенные</a></li>
+                <li class="menu-link"><a href="#">Доработать</a></li>
+                <li class="menu-link"><a href="#">Пользователи</a></li>
             </ul>
             <form action="/search" name="signin" method="POST" autocomplete="off" class="form-search">
                 <div class="form-search__input textbox">
@@ -27,8 +27,29 @@
                 <button class="form-search__btn"></button>
             </form>
         </div>
-        
     </header>
+
+    <main class="main">
+        <div class="main__wrapper">
+            <div class="main__menu">
+                <ul class="menu menu--dark">
+                    <li class="menu-link menu-link--active"><a href="#">Все работы</a></li>
+                    <li class="menu-link"><a href="#">Лабораторные работы</a></li>
+                    <li class="menu-link"><a href="#">Курсовые работы</a></li>
+                </ul>
+            </div>
+            <div class="main__works">
+                <div class="work"></div>
+                <div class="work"></div>
+                <div class="work"></div>
+                <div class="work"></div>
+                <div class="work"></div>
+                <div class="work"></div>
+                <div class="work"></div>
+                <div class="work"></div>
+            </div>
+        </div>
+    </main>
 
 </body>
 </html>
