@@ -31,31 +31,11 @@ app.set('view engine', 'hbs');
 // Главная страница
 app.get('/', (req, res) => {	
 	// Отсылаем главную
+	res.render('signInUp.hbs');
+});
+
+app.get('/panel', (req, res) => {
 	res.render('index.hbs');
-});
-
-// Свадьбы
-app.get('/wedding', (req, res) => {	
-	// Отсылаем главную
-	res.render('wedding.hbs');
-});
-
-// Ивенты
-app.get('/event', (req, res) => {	
-	// Отсылаем главную
-	res.render('event.hbs');
-});
-
-// Дет. сады и школы
-app.get('/school', (req, res) => {	
-	// Отсылаем главную
-	res.render('school.hbs');
-});
-
-// Онлайн трансялции
-app.get('/online', (req, res) => {	
-	// Отсылаем главную
-	res.render('online.hbs');
 });
 
 app.listen(appport, () => {

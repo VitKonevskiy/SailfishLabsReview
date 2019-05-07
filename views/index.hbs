@@ -1,40 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Главная</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-   {{!-- <form action="">
-       <input type="text" class="reg-login" placeholder="Логин"><br><br>
-        <input type="password" class="reg-pass" placeholder="Пароль"><br><br>
-        <input type="password" class="reg-pass-check" placeholder="Подтвердите пароль"><br><br>
-        <input type="text" class="reg-name" placeholder="Введите имя"><br><br>
-        <input type="text" class="reg-surname" placeholder="Введите фамилию"><br><br>
-        <input type="text" class="reg-num-group" placeholder="Номер группы"><br><br>
-        <input type="email" class="reg-email" placeholder="mail@mail.ru"><br><br>
-        <input type="tel" class="reg-tel" placeholder="+7 (999) 123-24-25"><br><br>
-        <input type="button" id="submit-btn" value="Кнопка">
-   </form> --}}
-    <div class="status"></div>
-    <style>
-        form {
-            display: flex;
-            flex-direction: column;
-            width: 350px;
-        }
+    
+    <header class="header">
+        <div class="header__wrapper">
+            <ul class="header__menu">
+                <li class="header__menu-link header__menu-link--active"><a href="#">Работы</a></li>
+                <li class="header__menu-link"><a href="#">На проверке</a></li>
+                <li class="header__menu-link"><a href="#">Проверенные</a></li>
+                <li class="header__menu-link"><a href="#">Доработать</a></li>
+                <li class="header__menu-link"><a href="#">Пользователи</a></li>
+            </ul>
+            <form action="/search" name="signin" method="POST" autocomplete="off" class="form-search">
+                <div class="form-search__input textbox">
+                    <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st-white">
+                    <label class="textbox__label--white">Поиск...</label>
+                    <i></i>
+                </div>
+                <button class="form-search__btn"></button>
+            </form>
+        </div>
+        
+    </header>
 
-        form > * + * {
-            margin-top: 10px;
-        }
-    </style>
-    <form action="">
-        <input type="file" name="doc">
-        <input type="button" value="Удалить файл">
-        <input type="submit" name value="Кнопка">
-   </form>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" defer></script>
-	<script src="/js/login.js" defer></script>
 </body>
 </html>
