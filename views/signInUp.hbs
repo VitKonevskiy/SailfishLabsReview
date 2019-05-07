@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Логин</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="pop-up sign-in-form pop-up--active">
+        <div class="pop-up__wrapper pop-up__wrapper--st">
+            <div class="pop-up__header">
+                <h3 class="title--small">Вход</h3>
+                <div class="pop-up__close cross cross--close cross--none">
+                    <i></i>
+                    <i></i>
+                </div>
+            </div>
+            <div class="pop-up__info">
+                <form action="" name="signin" method="POST" autocomplete="off" class="form">
+                    <div class="form__input-wrapper textbox">
+                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Логин</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox"> 
+                        <input type="password" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Пароль</label>
+                        <i></i>
+                    </div>
+                    <div class="form__btns">
+                        <a href="/panel" class="btn btn--st-blue">Войти</a>
+                        <a class="btn btn--circ-blue to-reg-btn">Регистрация</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop-up sign-up-form">
+        <div class="pop-up__wrapper pop-up__wrapper--st">
+            <div class="pop-up__header">
+                <h3 class="title--small">Регистрация</h3>
+                <div class="pop-up__close cross cross--close cross--none">
+                    <i></i>
+                    <i></i>
+                </div>
+            </div>
+            <div class="pop-up__info">
+                <form action="" name="signup" method="POST" autocomplete="off" class="form">
+                    <div class="form__input-wrapper textbox">
+                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Логин</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox">
+                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Имя</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox">
+                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Фамилия</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox">
+                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Номер группы</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox">
+                        <input type="email" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>E-mail</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox">
+                        <input type="tel" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Телефон</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox">
+                        <input type="password" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Пароль</label>
+                        <i></i>
+                    </div>
+                    <div class="form__input-wrapper textbox">
+                        <input type="password" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Повтор пароля</label>
+                        <i></i>
+                    </div>
+                    <div class="form__btns">
+                        <a class="btn btn--st-blue to-reg-active">Регистрация</a>
+                        <a class="btn btn--circ-blue to-login-btn">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop-up sign-up-active">
+        <div class="pop-up__wrapper pop-up__wrapper--st">
+            <div class="pop-up__header">
+                <h3 class="title--small">Подтверждение аккаунта</h3>
+                <div class="pop-up__close cross cross--close cross--none">
+                    <i></i>
+                    <i></i>
+                </div>
+            </div>
+            <div class="pop-up__info">
+                <form action="" name="signup-active" method="POST" autocomplete="off" class="form">
+                    <p class="form__description">Мы выслали на указанную почту "mail@mail.ru" код с подтверждением Вашего аккаунта.<br>Введите его в поле ниже.</p>
+                    <div class="form__input-wrapper textbox">
+                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <label>Код подтверждения</label>
+                        <i></i>
+                    </div>
+                    <div class="form__btns">
+                        <a href="/panel" class="btn btn--st-blue">Подтвердить</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js" defer></script>
+    <script src="/js/sign-in.js" defer></script>
+
+</body>
+</html>
