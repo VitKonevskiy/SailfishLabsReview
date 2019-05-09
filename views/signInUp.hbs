@@ -51,47 +51,47 @@
             <div class="pop-up__info">
                 <form action="" name="signup" method="POST" autocomplete="off" class="form">
                     <div class="form__input-wrapper textbox">
-                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="text" id="reg_login_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>Логин</label>
                         <i></i>
                     </div>
                     <div class="form__input-wrapper textbox">
-                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="text" id="reg_name_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>Имя</label>
                         <i></i>
                     </div>
                     <div class="form__input-wrapper textbox">
-                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="text" id="reg_second_name_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>Фамилия</label>
                         <i></i>
                     </div>
                     <div class="form__input-wrapper textbox">
-                        <input type="text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="text" id="reg_group_number_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>Номер группы</label>
                         <i></i>
                     </div>
                     <div class="form__input-wrapper textbox">
-                        <input type="email" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="email" id="reg_email_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>E-mail</label>
                         <i></i>
                     </div>
                     <div class="form__input-wrapper textbox">
-                        <input type="tel" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="tel" id="reg_phone_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>Телефон</label>
                         <i></i>
                     </div>
                     <div class="form__input-wrapper textbox">
-                        <input type="password" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="password" id="reg_password_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>Пароль</label>
                         <i></i>
                     </div>
                     <div class="form__input-wrapper textbox">
-                        <input type="password" placeholder="&nbsp;" class="textbox__input textbox__input--st">
+                        <input type="password" id="reg_password_repeat_text" placeholder="&nbsp;" class="textbox__input textbox__input--st">
                         <label>Повтор пароля</label>
                         <i></i>
                     </div>
                     <div class="form__btns">
-                        <a class="btn btn--st-blue to-reg-active">Регистрация</a>
+                        <a class="btn btn--st-blue to-reg-active" id="registerButton">Регистрация</a>
                         <a class="btn btn--circ-blue to-login-btn">Войти</a>
                     </div>
                 </form>
@@ -126,6 +126,28 @@
 
     <script src="//code.jquery.com/jquery-3.3.1.min.js" defer></script>
     <script src="/js/sign-in.js" defer></script>
+    <script>
+        registerButton.onclick = function(){
+            
+            //var login=document.getElementById('reg_login_text').value
 
+            var loginData = document.getElementById('reg_login_text').value;
+            var nameData = document.getElementById('reg_name_text').value;
+            var secondNameData = document.getElementById('reg_second_name_text').value;
+            var groupNumberData = document.getElementById('reg_group_number_text').value;
+            var emailData = document.getElementById('reg_email_text').value;
+            var phoneData = document.getElementById('reg_phone_text').value;
+            var passData = document.getElementById('reg_password_text').value;
+            console.log(loginData)
+            $.ajax({
+                url: 'register',  
+                type: 'POST',
+                data: `login=${loginData}&name=${nameData}&secondName=${secondNameData}&group=${groupNumberData}&email=${emailData}&phone=${phoneData}&pass=${passData}`,
+                success:function(data){
+                    $('#output').html(data);
+                },
+            });
+        }
+    </script>
 </body>
 </html>
