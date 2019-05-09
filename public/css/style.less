@@ -14,8 +14,25 @@
 @inputGrayColor: rgb(212, 212, 212);
 
 @shadowColor: rgba(0,0,0,.1);
+@shadowMiddleColor: rgba(0,0,0,.15);
+
+@greenColor: #37AA27;
+@yellowColor: rgb(243, 191, 19);
 
 @transTF: cubic-bezier(0.19, 1, 0.22, 1);
+
+// Адаптивность
+@BIG_SCREEN: 1380px;
+@MEDIUM_SCREEN: 1200px;
+@TABLET_SCREEN: 1000px;
+@TABLET_MEDIUM_SCREEN: 750px;
+@MOBILE_SCREEN: 500px;
+@MIN_SCREEN: 359px;
+@MINUS_PX: 30px;
+
+.adap( @width; @rules ) {
+	@media screen and (max-width: @width) { @rules(); };
+}
 
 * {
     margin: 0;
@@ -312,6 +329,7 @@ input:active, textarea:active {outline:none;}
     background-color: @blueColor;
     z-index: 1000;
 
+    // Контент внутри
     & .header__wrapper {
         display: flex;
         max-width: 1360px;
@@ -319,6 +337,10 @@ input:active, textarea:active {outline:none;}
         justify-content: space-between;
         width: 100%;
         height: inherit;
+
+        .adap(@BIG_SCREEN; {
+            max-width: @MEDIUM_SCREEN - @MINUS_PX;
+        });
 
         & .header__menu {
             display: flex;
@@ -422,15 +444,21 @@ input:active, textarea:active {outline:none;}
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    margin-top: 75px;
+    margin: 75px 0 50px;
 
     & .main__wrapper {
         max-width: 1360px;
         width: 100%;
         padding-left: 300px;
 
+        .adap(@BIG_SCREEN; {
+            max-width: @MEDIUM_SCREEN - @MINUS_PX;
+        });
+
         & .main__works {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 50px;
             flex-wrap: wrap;
             justify-content: space-around;
             border-radius: 3px;
@@ -438,15 +466,129 @@ input:active, textarea:active {outline:none;}
             height: 100px;
             margin-top: 60px;
 
-            & > * {
-                margin-bottom: 50px;
-            }
+            .adap(@BIG_SCREEN; {
+                grid-template-columns: 1fr 1fr 1fr;
+            });
         }
     }
 }
 
 // Таблица с работой
 .work {
+    position: relative;
     width: 230px; height: 250px;
+    padding: 10px;
+    background-color: @whiteColor;
     box-shadow: 0 10px 25px @shadowColor;
+    border-radius: 3px;
+    overflow: hidden;
+
+    // Название работы
+    & .work__name {
+        margin-bottom: 20px;
+    }
+
+    // Поля
+    & .work__label {
+        font-weight: 600;
+
+        & > span {
+            font-weight: 400;
+        }
+    }
+
+    // Статус
+    & .work__status {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%; height: 55px;
+        cursor: pointer;
+        transform-origin: bottom;
+        transition: height .6s @transTF;
+
+        & .work__status-more {
+            position: absolute;
+            right: 30px; top: -25px;
+            width: 50px; height: 50px;
+            background-color: @bgColor;
+            border-radius: 50%;
+            box-shadow: 0 0 25px @shadowMiddleColor;
+            text-align: center;
+            line-height: 33px;
+            font-size: 1.5rem;
+            color: @titleColor;
+            transition: transform .6s @transTF;
+        }
+
+        & > p {
+            color: @whiteColor;
+            width: 65%;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        &:hover {
+            height: 60px;
+
+            & .work__status-more {
+                transform: translate3d(0, -10px, 0);
+            }
+        }
+
+        // Модификаторы
+        &.work__status--ok {
+            background-color: @greenColor;
+        }
+
+        &.work__status--wait {
+            background-color: @yellowColor;
+        }
+
+        &.work__status--bad {
+            background-color: @redColor;
+        }
+    }
+}
+
+// Фиксированный аккаунт
+.account {
+    position: fixed;
+    max-width: 1360px;
+    width: 100%;
+    left: 50%; top: 75px;
+    transform: translateX(-50%);
+
+    .adap(@BIG_SCREEN; {
+        max-width: @MEDIUM_SCREEN - @MINUS_PX;
+    });
+
+    & .account__wrapper {
+        width: 260px; height: 360px;
+        background-color: @whiteColor;
+        box-shadow: 0 20px 50px @shadowColor;
+        border-radius: 3px;
+        overflow: hidden;
+
+        // Шапка
+        & .account__top {
+            width: 100%; height: 55px;
+            background-color: @blueColor;
+
+            & * {
+                color: @whiteColor;
+            }
+
+            & > p {
+                font-weight: 600;
+                line-height: 51px;
+                padding-left: 15px;
+
+                & > span {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
 }
