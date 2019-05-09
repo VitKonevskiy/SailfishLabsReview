@@ -248,7 +248,7 @@ textarea:active {
   width: 100vw;
   height: 50px;
   background-color: #0077C1;
-  z-index: 1000;
+  z-index: 100;
 }
 .header .header__wrapper {
   display: flex;
@@ -440,16 +440,27 @@ textarea:active {
   line-height: 33px;
   font-size: 1.5rem;
   background-color: #F6FDFF;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #092D4D;
   cursor: pointer;
   will-change: transform;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), width 0.6s cubic-bezier(0.19, 1, 0.22, 1), height 0.6s cubic-bezier(0.19, 1, 0.22, 1), border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.optional-btn.optional-btn--open {
+  position: relative;
+  width: 360px;
+  height: 500px;
+  border-radius: 3px;
+  transform: translate3d(-25px, -25px, 0);
 }
 .optional-btn.optional-btn--settings {
   background-image: url('/img/icons/settings-work-tool.svg');
-  background-position: center;
   background-size: 50%;
-  background-repeat: no-repeat;
+}
+.optional-btn.optional-btn--more {
+  background-image: url('/img/icons/right-arrow.svg');
+  background-size: 36%;
 }
 .account {
   position: fixed;
@@ -469,6 +480,7 @@ textarea:active {
   background-color: #fff;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
+  z-index: 110;
   overflow: hidden;
 }
 .account .account__wrapper .account__top {
@@ -492,9 +504,10 @@ textarea:active {
   position: absolute;
   right: 20px;
   bottom: -25px;
+  transition: opacity 0.2s cubic-bezier(0.19, 1, 0.22, 1) 0.6s;
 }
-.account .account__wrapper .account__top .account__settings-btn:hover {
-  transform: scale(1.1);
+.account .account__wrapper .account__top .account__settings-btn.account__settings-btn--hide {
+  opacity: 0;
 }
 .account .account__wrapper .account__info {
   width: 100%;
@@ -513,6 +526,19 @@ textarea:active {
   width: 260px;
   margin-top: 25px;
 }
+.account .account__exit {
+  width: 100%;
+  height: 40px;
+  background-color: #C02530;
+  color: #fff;
+  text-align: center;
+  line-height: 38px;
+  cursor: pointer;
+  transition: background-color 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.account .account__exit:hover {
+  background-color: #e01321;
+}
 .logo {
   width: 150px;
   height: 50px;
@@ -522,4 +548,60 @@ textarea:active {
 }
 .logo.logo--unn {
   background-image: url('/img/logo/logo-lobach.png');
+}
+.pop-up-btn {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 120;
+  transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.pop-up-btn .pop-up-btn__wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: #F6FDFF;
+  border-radius: 50%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+.pop-up-btn .pop-up-btn__wrapper .pop-up-btn__content {
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.pop-up-btn .pop-up-btn__wrapper .pop-up-btn__content .pop-up-btn__header {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background-color: #0077C1;
+}
+.pop-up-btn .pop-up-btn__wrapper .pop-up-btn__content .pop-up-btn__header .pop-up-btn__close {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #C02530;
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+  right: 30px;
+  bottom: -25px;
+  cursor: pointer;
+}
+.pop-up-btn.pop-up-btn--active {
+  opacity: 1;
+  visibility: visible;
+}
+.pop-up-btn.pop-up-btn--active .pop-up-btn__shadow {
+  opacity: 0;
+}
+.pop-up-btn.pop-up-btn--active .pop-up-btn__wrapper {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  border-radius: 3px;
+}
+.pop-up-btn.pop-up-btn--active .pop-up-btn__wrapper .pop-up-btn__content {
+  opacity: 1;
 }

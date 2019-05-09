@@ -76,7 +76,7 @@ input:active, textarea:active {outline:none;}
         width: 360px;
 
         &.pop-up__wrapper--st {
-            background-color: #fff;
+            background-color: @whiteColor;
             box-shadow: 0 20px 50px @shadowColor;
             padding: 20px 30px;
             border-radius: 3px;
@@ -327,7 +327,7 @@ input:active, textarea:active {outline:none;}
     left: 0; top: 0;
     width: 100vw; height: 50px;
     background-color: @blueColor;
-    z-index: 1000;
+    z-index: 100;
 
     // Контент внутри
     & .header__wrapper {
@@ -552,17 +552,33 @@ input:active, textarea:active {outline:none;}
     line-height: 33px;
     font-size: 1.5rem;
     background-color: @bgColor;
+    background-position: center;
+    background-repeat: no-repeat;
     color: @titleColor;
     cursor: pointer;
     will-change: transform;
-    transition: transform .6s @transTF;
+    transition: transform .6s @transTF,
+                width .6s @transTF,
+                height .6s @transTF,
+                border-radius .2s @transTF;
+
+    &.optional-btn--open {
+        position: relative;
+        width: 360px; height: 500px;
+        border-radius: 3px;
+        transform: translate3d(-25px, -25px, 0);
+    }
 
     // Настройки
     &.optional-btn--settings {
         background-image: url('/img/icons/settings-work-tool.svg');
-        background-position: center;
         background-size: 50%;
-        background-repeat: no-repeat;
+    }
+
+    // Стрелка вправо (подробнее)
+    &.optional-btn--more {
+        background-image: url('/img/icons/right-arrow.svg');
+        background-size: 36%;
     }
 }
 
@@ -583,6 +599,7 @@ input:active, textarea:active {outline:none;}
         background-color: @whiteColor;
         box-shadow: 0 20px 50px @shadowColor;
         border-radius: 3px;
+        z-index: 110;
         overflow: hidden;
 
         // Шапка
@@ -608,9 +625,10 @@ input:active, textarea:active {outline:none;}
             & .account__settings-btn {
                 position: absolute;
                 right: 20px; bottom: -25px;
+                transition: opacity .2s @transTF .6s;
 
-                &:hover {
-                    transform: scale(1.1);
+                &.account__settings-btn--hide {
+                    opacity: 0;
                 }
             }
         }
@@ -637,6 +655,21 @@ input:active, textarea:active {outline:none;}
         width: 260px;
         margin-top: 25px;
     }
+
+    & .account__exit {
+        width: 100%;
+        height: 40px;
+        background-color: @redColor;
+        color: @whiteColor;
+        text-align: center;
+        line-height: 38px;
+        cursor: pointer;
+        transition: background-color .6s @transTF;
+
+        &:hover {
+            background-color: @redHoverColor;
+        }
+    }
 }
 
 // Логотип
@@ -648,5 +681,76 @@ input:active, textarea:active {outline:none;}
 
     &.logo--unn {
         background-image: url('/img/logo/logo-lobach.png');
+    }
+}
+
+// Всплывающее окно из кнопки
+.pop-up-btn {
+    position: fixed;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 120;
+    transition: opacity .4s @transTF,
+                visibility .4s @transTF;
+
+    // & .pop-up-btn__shadow {
+    //     position: absolute;
+    //     width: inherit; height: inherit;
+    //     left: 0; top: 0;
+    //     background-color: @shadowColor;
+    //     opacity: 0;
+    //     transition: opacity .2s @transTF;
+    // }
+
+    & .pop-up-btn__wrapper {
+        position: relative;
+        width: 50px; height: 50px;
+        background-color: @bgColor;
+        border-radius: 50%;
+        box-shadow: 0 20px 50px @shadowColor;
+
+        & .pop-up-btn__content {
+            opacity: 0;
+            transition: opacity .3s @transTF;
+
+            & .pop-up-btn__header {
+                position: relative;
+                width: 100%; height: 50px;
+                background-color: @blueColor;
+    
+                & .pop-up-btn__close {
+                    position: absolute;
+                    width: 50px; height: 50px;
+                    background-color: @redColor;
+                    border-radius: 50%;
+                    box-shadow: 0 0 50px @shadowMiddleColor;
+                    right: 30px; bottom: -25px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        
+    }
+
+    &.pop-up-btn--active {
+        opacity: 1;
+        visibility: visible;
+
+        & .pop-up-btn__shadow {
+            opacity: 0;
+        }
+
+        & .pop-up-btn__wrapper {
+            position: relative;
+            width: 350px; height: 500px;
+            border-radius: 3px;
+
+            & .pop-up-btn__content {
+                opacity: 1;
+            }
+        }
     }
 }
