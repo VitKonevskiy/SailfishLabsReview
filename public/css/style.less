@@ -510,16 +510,7 @@ input:active, textarea:active {outline:none;}
 
         & .work__status-more {
             position: absolute;
-            right: 30px; top: -25px;
-            width: 50px; height: 50px;
-            background-color: @bgColor;
-            border-radius: 50%;
-            box-shadow: 0 0 25px @shadowMiddleColor;
-            text-align: center;
-            line-height: 33px;
-            font-size: 1.5rem;
-            color: @titleColor;
-            transition: transform .6s @transTF;
+            right: 30px; top: -25px;            
         }
 
         & > p {
@@ -552,6 +543,29 @@ input:active, textarea:active {outline:none;}
     }
 }
 
+// Круглая опциональная кнопка
+.optional-btn {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 0 25px @shadowMiddleColor;
+    text-align: center;
+    line-height: 33px;
+    font-size: 1.5rem;
+    background-color: @bgColor;
+    color: @titleColor;
+    cursor: pointer;
+    will-change: transform;
+    transition: transform .6s @transTF;
+
+    // Настройки
+    &.optional-btn--settings {
+        background-image: url('/img/icons/settings-work-tool.svg');
+        background-position: center;
+        background-size: 50%;
+        background-repeat: no-repeat;
+    }
+}
+
 // Фиксированный аккаунт
 .account {
     position: fixed;
@@ -565,7 +579,7 @@ input:active, textarea:active {outline:none;}
     });
 
     & .account__wrapper {
-        width: 260px; height: 360px;
+        width: 260px;
         background-color: @whiteColor;
         box-shadow: 0 20px 50px @shadowColor;
         border-radius: 3px;
@@ -573,6 +587,7 @@ input:active, textarea:active {outline:none;}
 
         // Шапка
         & .account__top {
+            position: relative;
             width: 100%; height: 55px;
             background-color: @blueColor;
 
@@ -589,6 +604,49 @@ input:active, textarea:active {outline:none;}
                     font-weight: 400;
                 }
             }
+
+            & .account__settings-btn {
+                position: absolute;
+                right: 20px; bottom: -25px;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
         }
+
+        // Основные данные
+        & .account__info {
+            width: 100%;
+            padding: 15px;
+
+            & > p {
+                font-weight: 600;
+
+                & > span {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    & .account__logos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 260px;
+        margin-top: 25px;
+    }
+}
+
+// Логотип
+.logo {
+    width: 150px; height: 50px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.logo--unn {
+        background-image: url('/img/logo/logo-lobach.png');
     }
 }

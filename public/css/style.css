@@ -409,16 +409,6 @@ textarea:active {
   position: absolute;
   right: 30px;
   top: -25px;
-  width: 50px;
-  height: 50px;
-  background-color: #F6FDFF;
-  border-radius: 50%;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  line-height: 33px;
-  font-size: 1.5rem;
-  color: #092D4D;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .work .work__status > p {
   color: #fff;
@@ -441,6 +431,26 @@ textarea:active {
 .work .work__status.work__status--bad {
   background-color: #C02530;
 }
+.optional-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  line-height: 33px;
+  font-size: 1.5rem;
+  background-color: #F6FDFF;
+  color: #092D4D;
+  cursor: pointer;
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.optional-btn.optional-btn--settings {
+  background-image: url('/img/icons/settings-work-tool.svg');
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
 .account {
   position: fixed;
   max-width: 1360px;
@@ -456,13 +466,13 @@ textarea:active {
 }
 .account .account__wrapper {
   width: 260px;
-  height: 360px;
   background-color: #fff;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   overflow: hidden;
 }
 .account .account__wrapper .account__top {
+  position: relative;
   width: 100%;
   height: 55px;
   background-color: #0077C1;
@@ -477,4 +487,39 @@ textarea:active {
 }
 .account .account__wrapper .account__top > p > span {
   font-weight: 400;
+}
+.account .account__wrapper .account__top .account__settings-btn {
+  position: absolute;
+  right: 20px;
+  bottom: -25px;
+}
+.account .account__wrapper .account__top .account__settings-btn:hover {
+  transform: scale(1.1);
+}
+.account .account__wrapper .account__info {
+  width: 100%;
+  padding: 15px;
+}
+.account .account__wrapper .account__info > p {
+  font-weight: 600;
+}
+.account .account__wrapper .account__info > p > span {
+  font-weight: 400;
+}
+.account .account__logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px;
+  margin-top: 25px;
+}
+.logo {
+  width: 150px;
+  height: 50px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.logo.logo--unn {
+  background-image: url('/img/logo/logo-lobach.png');
 }
