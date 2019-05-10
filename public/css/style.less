@@ -1,5 +1,6 @@
 @bgColor: #F6FDFF;
 @whiteColor: #fff;
+@blackColor: #222;
 
 @redColor: #C02530;
 @redHoverColor: rgb(224, 19, 33);
@@ -13,20 +14,39 @@
 @inputGrayColor: rgb(212, 212, 212);
 
 @shadowColor: rgba(0,0,0,.1);
+@shadowMiddleColor: rgba(0,0,0,.15);
+
+@greenColor: #37AA27;
+@yellowColor: rgb(243, 191, 19);
 
 @transTF: cubic-bezier(0.19, 1, 0.22, 1);
+
+// Адаптивность
+@BIG_SCREEN: 1380px;
+@MEDIUM_SCREEN: 1200px;
+@TABLET_SCREEN: 1000px;
+@TABLET_MEDIUM_SCREEN: 750px;
+@MOBILE_SCREEN: 500px;
+@MIN_SCREEN: 359px;
+@MINUS_PX: 30px;
+
+.adap( @width; @rules ) {
+	@media screen and (max-width: @width) { @rules(); };
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: @blackColor;
 }
 
 body {
     width: 100vw;
     min-height: 100vh;
     background-color: @bgColor;
+    overflow-x: hidden;
 }
 
 a:active, a:focus { outline: none; }
@@ -56,7 +76,7 @@ input:active, textarea:active {outline:none;}
         width: 360px;
 
         &.pop-up__wrapper--st {
-            background-color: #fff;
+            background-color: @whiteColor;
             box-shadow: 0 20px 50px @shadowColor;
             padding: 20px 30px;
             border-radius: 3px;
@@ -307,7 +327,9 @@ input:active, textarea:active {outline:none;}
     left: 0; top: 0;
     width: 100vw; height: 50px;
     background-color: @blueColor;
+    z-index: 100;
 
+    // Контент внутри
     & .header__wrapper {
         display: flex;
         max-width: 1360px;
@@ -315,6 +337,10 @@ input:active, textarea:active {outline:none;}
         justify-content: space-between;
         width: 100%;
         height: inherit;
+
+        .adap(@BIG_SCREEN; {
+            max-width: @MEDIUM_SCREEN - @MINUS_PX;
+        });
 
         & .header__menu {
             display: flex;
@@ -353,6 +379,377 @@ input:active, textarea:active {outline:none;}
                 &.header__menu-link--active:after {
                     transform: scale3d(1, 1, 1);
                 }
+            }
+        }
+    }
+}
+
+// Меню
+.menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    & > * + * {
+        margin-left: 30px;
+    }
+
+    & .menu-link {
+        position: relative;
+        height: 100%;
+
+        & > a {
+            display: block;
+            height: 100%;
+            line-height: 50px;
+            color: @whiteColor;
+            text-decoration: none;
+            font-size: .875rem;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            width: 100%; height: 2px;
+            background-color: @whiteColor;
+            left: 0; bottom: 0;
+            transform: scale3d(0, 1, 1);
+            transform-origin: left;
+            transition: transform .4s @transTF;
+        }
+
+        &:hover:after,
+        &.menu-link--active:after {
+            transform: scale3d(1, 1, 1);
+        }
+    }
+
+    &.menu--dark {
+        & .menu-link {
+
+            & > a {
+                color: @blackColor;
+            }
+
+            &:after {
+                background-color: @blueColor;
+            }
+        }
+    }
+}
+
+// Главный контент
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin: 75px 0 50px;
+
+    & .main__wrapper {
+        max-width: 1360px;
+        width: 100%;
+        padding-left: 300px;
+
+        .adap(@BIG_SCREEN; {
+            max-width: @MEDIUM_SCREEN - @MINUS_PX;
+        });
+
+        & .main__works {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 50px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            border-radius: 3px;
+            width: 100%;
+            height: 100px;
+            margin-top: 60px;
+
+            .adap(@BIG_SCREEN; {
+                grid-template-columns: 1fr 1fr 1fr;
+            });
+        }
+    }
+}
+
+// Таблица с работой
+.work {
+    position: relative;
+    width: 230px; height: 250px;
+    padding: 10px;
+    background-color: @whiteColor;
+    box-shadow: 0 10px 25px @shadowColor;
+    border-radius: 3px;
+    overflow: hidden;
+
+    // Название работы
+    & .work__name {
+        margin-bottom: 20px;
+    }
+
+    // Поля
+    & .work__label {
+        font-weight: 600;
+
+        & > span {
+            font-weight: 400;
+        }
+    }
+
+    // Статус
+    & .work__status {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%; height: 55px;
+        cursor: pointer;
+        transform-origin: bottom;
+        transition: height .6s @transTF;
+
+        & .work__status-more {
+            position: absolute;
+            right: 30px; top: -25px;            
+        }
+
+        & > p {
+            color: @whiteColor;
+            width: 65%;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        &:hover {
+            height: 60px;
+
+            & .work__status-more {
+                transform: translate3d(0, -10px, 0);
+            }
+        }
+
+        // Модификаторы
+        &.work__status--ok {
+            background-color: @greenColor;
+        }
+
+        &.work__status--wait {
+            background-color: @yellowColor;
+        }
+
+        &.work__status--bad {
+            background-color: @redColor;
+        }
+    }
+}
+
+// Круглая опциональная кнопка
+.optional-btn {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 0 25px @shadowMiddleColor;
+    text-align: center;
+    line-height: 33px;
+    font-size: 1.5rem;
+    background-color: @bgColor;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: @titleColor;
+    cursor: pointer;
+    will-change: transform;
+    transition: transform .6s @transTF,
+                width .6s @transTF,
+                height .6s @transTF,
+                border-radius .2s @transTF;
+
+    &.optional-btn--open {
+        position: relative;
+        width: 360px; height: 500px;
+        border-radius: 3px;
+        transform: translate3d(-25px, -25px, 0);
+    }
+
+    // Настройки
+    &.optional-btn--settings {
+        background-image: url('/img/icons/settings-work-tool.svg');
+        background-size: 50%;
+    }
+
+    // Стрелка вправо (подробнее)
+    &.optional-btn--more {
+        background-image: url('/img/icons/right-arrow.svg');
+        background-size: 36%;
+    }
+}
+
+// Фиксированный аккаунт
+.account {
+    position: fixed;
+    max-width: 1360px;
+    width: 100%;
+    left: 50%; top: 75px;
+    transform: translateX(-50%);
+
+    .adap(@BIG_SCREEN; {
+        max-width: @MEDIUM_SCREEN - @MINUS_PX;
+    });
+
+    & .account__wrapper {
+        width: 260px;
+        background-color: @whiteColor;
+        box-shadow: 0 20px 50px @shadowColor;
+        border-radius: 3px;
+        z-index: 110;
+        overflow: hidden;
+
+        // Шапка
+        & .account__top {
+            position: relative;
+            width: 100%; height: 55px;
+            background-color: @blueColor;
+
+            & * {
+                color: @whiteColor;
+            }
+
+            & > p {
+                font-weight: 600;
+                line-height: 51px;
+                padding-left: 15px;
+
+                & > span {
+                    font-weight: 400;
+                }
+            }
+
+            & .account__settings-btn {
+                position: absolute;
+                right: 20px; bottom: -25px;
+                transition: opacity .2s @transTF .6s;
+
+                &.account__settings-btn--hide {
+                    opacity: 0;
+                }
+            }
+        }
+
+        // Основные данные
+        & .account__info {
+            width: 100%;
+            padding: 15px;
+
+            & > p {
+                font-weight: 600;
+
+                & > span {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    & .account__logos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 260px;
+        margin-top: 25px;
+    }
+
+    & .account__exit {
+        width: 100%;
+        height: 40px;
+        background-color: @redColor;
+        color: @whiteColor;
+        text-align: center;
+        line-height: 38px;
+        cursor: pointer;
+        transition: background-color .6s @transTF;
+
+        &:hover {
+            background-color: @redHoverColor;
+        }
+    }
+}
+
+// Логотип
+.logo {
+    width: 150px; height: 50px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.logo--unn {
+        background-image: url('/img/logo/logo-lobach.png');
+    }
+}
+
+// Всплывающее окно из кнопки
+.pop-up-btn {
+    position: fixed;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 120;
+    transition: opacity .4s @transTF,
+                visibility .4s @transTF;
+
+    // & .pop-up-btn__shadow {
+    //     position: absolute;
+    //     width: inherit; height: inherit;
+    //     left: 0; top: 0;
+    //     background-color: @shadowColor;
+    //     opacity: 0;
+    //     transition: opacity .2s @transTF;
+    // }
+
+    & .pop-up-btn__wrapper {
+        position: relative;
+        width: 50px; height: 50px;
+        background-color: @bgColor;
+        border-radius: 50%;
+        box-shadow: 0 20px 50px @shadowColor;
+
+        & .pop-up-btn__content {
+            opacity: 0;
+            transition: opacity .3s @transTF;
+
+            & .pop-up-btn__header {
+                position: relative;
+                width: 100%; height: 50px;
+                background-color: @blueColor;
+    
+                & .pop-up-btn__close {
+                    position: absolute;
+                    width: 50px; height: 50px;
+                    background-color: @redColor;
+                    border-radius: 50%;
+                    box-shadow: 0 0 50px @shadowMiddleColor;
+                    right: 30px; bottom: -25px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        
+    }
+
+    &.pop-up-btn--active {
+        opacity: 1;
+        visibility: visible;
+
+        & .pop-up-btn__shadow {
+            opacity: 0;
+        }
+
+        & .pop-up-btn__wrapper {
+            position: relative;
+            width: 350px; height: 500px;
+            border-radius: 3px;
+
+            & .pop-up-btn__content {
+                opacity: 1;
             }
         }
     }
